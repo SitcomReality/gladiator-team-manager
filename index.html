@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gladiator Team Manager</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>🏛️ Gladiator Team Manager</h1>
+            <div class="resources">
+                <div class="resource">
+                    <span class="icon">💰</span>
+                    <span id="gold">500</span> Gold
+                </div>
+                <div class="resource">
+                    <span class="icon">⚔️</span>
+                    <span id="reputation">0</span> Reputation
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="game-container">
+                <div class="left-panel">
+                    <div class="panel">
+                        <h2>Your Gladiators</h2>
+                        <button id="recruit-btn" class="btn primary">Recruit New Gladiator (100g)</button>
+                        <div id="gladiator-roster"></div>
+                    </div>
+                </div>
+
+                <div class="center-panel">
+                    <div class="panel">
+                        <h2>Arena</h2>
+                        <div id="battle-selection">
+                            <h3>Available Battles</h3>
+                            <div id="battle-options"></div>
+                        </div>
+                        <div id="battle-setup" style="display: none;">
+                            <h3>Select Your Team</h3>
+                            <div id="team-selection"></div>
+                            <button id="start-battle-btn" class="btn primary">Enter the Arena!</button>
+                            <button id="cancel-battle-btn" class="btn secondary">Cancel</button>
+                        </div>
+                        <div id="battle-results" style="display: none;">
+                            <h3>Battle Results</h3>
+                            <div id="results-content"></div>
+                            <button id="continue-btn" class="btn primary">Continue</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right-panel">
+                    <div class="panel">
+                        <h2>Gladiator Details</h2>
+                        <div id="gladiator-details">
+                            <p>Select a gladiator to view details</p>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <h2>Medical Bay</h2>
+                        <div id="medical-bay">
+                            <p>Injured gladiators will appear here</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://esm.sh/three@0.158.0",
+            "nipplejs": "https://esm.sh/nipplejs"
+        }
+    }
+    </script>
+    <script src="gladiator.js"></script>
+    <script src="battle.js"></script>
+    <script src="ui.js"></script>
+    <script src="game.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4c6229722a6346bc8eb5cb0e5eae5d41","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
+
