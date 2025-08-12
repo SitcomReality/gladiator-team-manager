@@ -4,6 +4,7 @@ class Battle {
         this.playerTeam = [...playerTeam];
         this.enemyTeam = enemyTeam || this.generateEnemyTeam();
         this.log = [];
+        this.visualEvents = []; // Add visual events tracking
         this.rewards = this.calculateRewards();
         this.round = 0;
         this.maxRounds = 20;
@@ -53,6 +54,14 @@ class Battle {
         this.log.push(`🏛️ The battle begins! ${this.playerTeam.length} gladiators enter the arena!`);
         this.log.push(`Facing ${this.enemyTeam.length} opponents in ${this.difficulty} combat.`);
         this.log.push('');
+        
+        // Add initial visual event
+        this.visualEvents.push({
+            type: 'battle_start',
+            playerTeam: this.playerTeam.map(g => ({...g})),
+            enemyTeam: this.enemyTeam.map(g => ({...g})),
+            timestamp: Date.now()
+        });
         
         let playerAlive = this.playerTeam.filter(g => g.health > 0);
         let enemyAlive = this.enemyTeam.filter(g => g.health > 0);
@@ -124,22 +133,59 @@ class Battle {
             const result = target.takeDamage(damage);
             attacker.totalDamageDealt += damage;
             
+            // Add visual event for attack
+            this.visualEvents.push({
+                type: 'attack_hit',
+                attacker: attacker,
+                target: target,
+                damage: damage,
+                result: result,
+                isPlayerAttacking: isPlayerAttacking,
+                timestamp: Date.now()
+            });
+            
             let attackMessage = `⚔️ ${attacker.name} strikes ${target.name} for ${damage} damage!`;
             
             if (result.died) {
                 attackMessage += ` 💀 ${target.name} has fallen!`;
                 this.log.push(`<span class="defeat">${attackMessage}</span>`);
+                this.visualEvents.push({
+                    type: 'death',
+                    gladiator: target,
+                    timestamp: Date.now()
+                });
             } else if (result.severeInjury) {
                 attackMessage += ` 🩸 Severe injury: ${result.severeInjury.name}!`;
                 this.log.push(`<span class="injury">${attackMessage}</span>`);
+                this.visualEvents.push({
+                    type: 'severe_injury',
+                    gladiator: target,
+                    injury: result.severeInjury,
+                    timestamp: Date.now()
+                });
             } else if (result.injury) {
                 attackMessage += ` 🤕 Injury: ${result.injury.name}!`;
                 this.log.push(`<span class="injury">${attackMessage}</span>`);
+                this.visualEvents.push({
+                    type: 'injury',
+                    gladiator: target,
+                    injury: result.injury,
+                    timestamp: Date.now()
+                });
             } else {
                 this.log.push(attackMessage);
             }
         } else {
             this.log.push(`🛡️ ${attacker.name} attacks ${target.name} but misses!`);
+            
+            // Add visual event for miss
+            this.visualEvents.push({
+                type: 'attack_miss',
+                attacker: attacker,
+                target: target,
+                isPlayerAttacking: isPlayerAttacking,
+                timestamp: Date.now()
+            });
         }
         
         // Stamina cost
@@ -242,4 +288,3 @@ class BattleManager {
         return available.length >= req.minGladiators && available.length <= req.maxGladiators;
     }
 }
-
