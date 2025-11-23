@@ -1,7 +1,4 @@
-// Gladiator model (migrated from original gladiator.js)
-// Attaches Gladiator to window for global access.
-
-class Gladiator {
+export class Gladiator {
     constructor(name = null) {
         this.id = Math.random().toString(36).substr(2, 9);
         this.name = name || this.generateName();
@@ -252,39 +249,3 @@ class Gladiator {
         this.isAvailable = true;
     }
 }
-
-// Gladiator name generator and management
-class GladiatorManager {
-    constructor() {
-        this.gladiators = [];
-        this.nextId = 1;
-    }
-
-    recruitGladiator(name = null) {
-        const gladiator = new Gladiator(name);
-        this.gladiators.push(gladiator);
-        return gladiator;
-    }
-
-    getAvailableGladiators() {
-        return this.gladiators.filter(g => g.isAlive && g.isAvailable);
-    }
-
-    getInjuredGladiators() {
-        return this.gladiators.filter(g => g.isAlive && !g.isAvailable);
-    }
-
-    getDeadGladiators() {
-        return this.gladiators.filter(g => !g.isAlive);
-    }
-
-    restAll() {
-        this.gladiators.forEach(g => g.rest());
-    }
-
-    getGladiatorById(id) {
-        return this.gladiators.find(g => g.id === id);
-    }
-}
-
-window.Gladiator = Gladiator;

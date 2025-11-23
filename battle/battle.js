@@ -1,3 +1,5 @@
+import { Gladiator } from '../gladiator/Gladiator.js';
+
 export class Battle {
     constructor(difficulty, playerTeam, enemyTeam = null) {
         this.difficulty = difficulty;
