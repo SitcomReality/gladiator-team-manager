@@ -1,3 +1,25 @@
+:root {
+    --c-primary: #800000;       /* Roman Red */
+    --c-primary-dark: #5a0000;
+    --c-accent: #DAA520;        /* Gold */
+    --c-accent-light: #FFD700;
+    --c-bg-dark: #1a1a1a;       /* Dark Stone */
+    --c-bg-panel: #F5E6D3;      /* Parchment */
+    --c-bg-panel-dark: #E6D2B5;
+    --c-text-main: #2b1d0e;     /* Dark Ink */
+    --c-text-light: #F5E6D3;
+    --c-success: #228B22;
+    --c-danger: #B22222;
+    --c-border: #4A3728;        /* Leather/Wood */
+    
+    --font-heading: 'Cinzel', serif;
+    --font-body: 'Lato', sans-serif;
+    
+    --shadow-soft: 0 4px 6px rgba(0,0,0,0.1);
+    --shadow-hard: 0 4px 0 rgba(0,0,0,0.2);
+    --shadow-panel: 0 10px 30px rgba(0,0,0,0.5);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -5,8 +27,20 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: var(--font-body);
+    background-color: var(--c-bg-dark);
+    background-image: 
+        radial-gradient(circle at 50% 50%, rgba(0,0,0,0.4), rgba(0,0,0,0.8)),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23333333' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     min-height: 100vh;
-    color: #2c1810;
+    color: var(--c-text-main);
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--c-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 

@@ -1,228 +1,281 @@
 .panel {
-    background: rgba(255,255,255,0.9);
-    border-radius: 10px;
+    background: var(--c-bg-panel);
+    border-radius: 4px;
     padding: 1.5rem;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    border: 2px solid #8B4513;
-    margin-bottom: 1rem;
+    box-shadow: var(--shadow-panel);
+    border: 8px solid var(--c-border);
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
 }
 
+/* Decorative corner pieces idea simulated with pseudo elements */
+.panel::before, .panel::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background: var(--c-border);
+    left: 0;
+}
+.panel::before { top: 40px; border-bottom: 1px solid rgba(255,255,255,0.3); }
+
 .panel h2 {
-    color: #8B4513;
-    border-bottom: 2px solid #8B4513;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
+    color: var(--c-primary-dark);
+    border-bottom: 2px solid var(--c-border);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.4rem;
 }
 
 .panel h3 {
-    color: #A0522D;
-    margin-bottom: 0.75rem;
+    color: var(--c-text-main);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--c-primary);
+    padding-left: 0.5rem;
 }
 
+/* Scrollable areas within panels */
+#gladiator-roster, #battle-options, #team-roster, #gladiator-details, #medical-bay {
+    overflow-y: auto;
+    padding-right: 0.5rem;
+    flex: 1;
+}
+
+/* Buttons */
 .btn {
-    padding: 0.75rem 1.5rem;
+    padding: 0.8rem 1.5rem;
     border: none;
-    border-radius: 5px;
+    border-radius: 2px;
     cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    margin: 0.25rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    margin: 0.5rem 0;
     text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
 }
 
-.btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+.btn:active {
+    transform: translateY(2px);
+    box-shadow: none;
 }
 
 .btn.primary {
-    background: linear-gradient(135deg, #D2691E, #FF8C00);
-    color: white;
+    background: linear-gradient(to bottom, var(--c-primary), var(--c-primary-dark));
+    color: var(--c-accent);
+    border: 1px solid var(--c-primary-dark);
+    box-shadow: 0 4px 0 #3d0000;
+    width: 100%;
+}
+
+.btn.primary:hover {
+    filter: brightness(1.2);
 }
 
 .btn.secondary {
-    background: linear-gradient(135deg, #696969, #808080);
-    color: white;
+    background: linear-gradient(to bottom, #4a4a4a, #2c2c2c);
+    color: #e0e0e0;
+    border: 1px solid #1a1a1a;
+    box-shadow: 0 4px 0 #1a1a1a;
 }
 
-.btn.danger {
-    background: linear-gradient(135deg, #DC143C, #FF0000);
-    color: white;
+.btn.secondary:hover {
+    background: linear-gradient(to bottom, #5a5a5a, #3c3c3c);
 }
 
 .btn:disabled {
-    background: #ccc;
+    background: #555;
+    color: #888;
+    box-shadow: none;
     cursor: not-allowed;
-    transform: none;
+    transform: translateY(2px);
 }
 
-/* Gladiator cards and stats */
+/* Gladiator Cards */
 .gladiator-card {
-    background: linear-gradient(135deg, #F4A460 0%, #DEB887 100%);
-    border: 2px solid #8B4513;
-    border-radius: 8px;
+    background: #fff;
+    background-image: linear-gradient(to bottom, #fff, #f4f0ec);
+    border: 1px solid #d4c5b5;
+    border-radius: 3px;
     padding: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s;
     position: relative;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .gladiator-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    transform: translateX(4px);
+    border-color: var(--c-accent);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .gladiator-card.selected {
-    border-color: #FF8C00;
-    box-shadow: 0 0 20px rgba(255,140,0,0.5);
+    border: 2px solid var(--c-accent);
+    background: #fffcf5;
+}
+
+.gladiator-card.selected::after {
+    content: 'Selected';
+    position: absolute;
+    top: -8px;
+    right: 10px;
+    background: var(--c-accent);
+    color: var(--c-primary-dark);
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    font-family: var(--font-heading);
+    font-weight: bold;
+    border-radius: 2px;
 }
 
 .gladiator-card.injured {
-    background: linear-gradient(135deg, #CD853F 0%, #A0522D 100%);
-    opacity: 0.7;
+    border-left: 4px solid var(--c-danger);
+    background: rgba(178, 34, 34, 0.05);
 }
 
 .gladiator-card.dead {
-    background: linear-gradient(135deg, #696969 0%, #2F4F4F 100%);
-    opacity: 0.5;
+    opacity: 0.6;
+    background: #e0e0e0;
+    filter: grayscale(1);
 }
 
 .gladiator-name {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #2c1810;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--c-text-main);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 0.4rem;
     margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
 }
 
 .gladiator-class {
-    font-style: italic;
-    color: #8B4513;
-    margin-bottom: 0.5rem;
+    color: var(--c-primary);
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
 }
 
+/* Stats Layout */
 .stats {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
-    margin-bottom: 0.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.4rem;
+    background: rgba(0,0,0,0.03);
+    padding: 0.5rem;
+    border-radius: 2px;
 }
 
 .stat {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    background: rgba(255,255,255,0.3);
-    padding: 0.25rem 0.5rem;
-    border-radius: 3px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    color: #555;
 }
 
+.stat span:last-child {
+    font-weight: bold;
+    color: var(--c-text-main);
+}
+
+/* Bars */
 .health-bar, .stamina-bar {
-    width: 100%;
-    height: 20px;
-    background: rgba(0,0,0,0.2);
-    border-radius: 10px;
-    overflow: hidden;
-    margin-top: 0.25rem;
+    height: 8px;
+    background: #dcdcdc;
+    border-radius: 4px;
+    margin-top: 0.5rem;
+    position: relative;
+    border: 1px solid rgba(0,0,0,0.1);
 }
 
 .health-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #32CD32, #228B22);
-    transition: width 0.5s ease;
+    background: linear-gradient(90deg, #ff4d4d, var(--c-danger));
+    box-shadow: 0 0 4px rgba(178,34,34,0.5);
+    border-radius: 3px;
 }
 
 .stamina-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #4169E1, #0000CD);
-    transition: width 0.5s ease;
+    background: linear-gradient(90deg, #4da6ff, #0059b3);
+    border-radius: 3px;
 }
 
-/* Battle options, logs, injuries, prosthetics */
+small {
+    display: block;
+    margin-top: 0.2rem;
+    color: #777;
+    font-size: 0.75rem;
+    text-align: right;
+}
+
+/* Battle Options */
 .battle-option {
-    background: linear-gradient(135deg, #F5DEB3, #D2B48C);
-    border: 2px solid #8B4513;
-    border-radius: 8px;
-    padding: 1rem;
+    background: #fff;
+    border: 1px solid #d4c5b5;
+    padding: 1.2rem;
+    border-radius: 3px;
     margin-bottom: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s;
 }
 
 .battle-option:hover {
+    border-color: var(--c-primary);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
 }
 
 .battle-difficulty {
+    font-family: var(--font-heading);
     font-weight: bold;
+    letter-spacing: 1px;
+    border-bottom: 2px solid;
+    display: inline-block;
+    padding-bottom: 2px;
     margin-bottom: 0.5rem;
 }
 
-.battle-difficulty.easy { color: #32CD32; }
-.battle-difficulty.medium { color: #FF8C00; }
-.battle-difficulty.hard { color: #DC143C; }
-.battle-difficulty.legendary { color: #8A2BE2; }
+.battle-difficulty.easy { color: var(--c-success); border-color: var(--c-success); }
+.battle-difficulty.medium { color: var(--c-accent); border-color: var(--c-accent); }
+.battle-difficulty.hard { color: var(--c-danger); border-color: var(--c-danger); }
+.battle-difficulty.legendary { color: #800080; border-color: #800080; }
 
 .battle-rewards {
+    margin-top: 1rem;
+    padding-top: 0.5rem;
+    border-top: 1px dashed #ccc;
     display: flex;
-    justify-content: space-between;
-    margin-top: 0.5rem;
-}
-
-.injury-list {
-    list-style: none;
-    margin: 0.5rem 0;
-}
-
-.injury-list li {
-    background: rgba(220,20,60,0.1);
-    padding: 0.25rem 0.5rem;
-    margin: 0.25rem 0;
-    border-radius: 3px;
-    border-left: 3px solid #DC143C;
+    gap: 1rem;
     font-size: 0.9rem;
+    color: var(--c-text-main);
 }
 
-.prosthetic-option {
-    background: rgba(255,215,0,0.2);
-    border: 1px solid #DAA520;
-    border-radius: 5px;
-    padding: 0.5rem;
-    margin: 0.25rem 0;
-    cursor: pointer;
-    transition: all 0.3s ease;
+.battle-rewards span {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
 }
 
-.prosthetic-option:hover {
-    background: rgba(255,215,0,0.4);
-    transform: translateY(-1px);
-}
-
+/* Battle Log */
 .battle-log {
-    background: rgba(0,0,0,0.8);
-    color: #fff;
+    background: rgba(0, 0, 0, 0.9);
+    color: #eee;
+    font-family: 'Courier New', monospace;
     padding: 1rem;
-    border-radius: 5px;
-    max-height: 300px;
+    border: 2px solid var(--c-border);
+    border-radius: 2px;
+    max-height: 200px;
     overflow-y: auto;
-    margin: 1rem 0;
-    font-family: monospace;
-    line-height: 1.4;
-}
-
-.battle-log .victory {
-    color: #32CD32;
-    font-weight: bold;
-}
-
-.battle-log .defeat {
-    color: #DC143C;
-    font-weight: bold;
-}
-
-.battle-log .injury {
-    color: #FF8C00;
+    font-size: 0.9rem;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
 }

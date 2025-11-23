@@ -1,39 +1,49 @@
 #battle-arena-container {
-    background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #8B4513 100%);
-    border: 3px solid #654321;
-    border-radius: 10px;
-    padding: 10px;
+    background: #000;
+    border: 8px solid var(--c-border);
+    border-radius: 2px;
+    padding: 0;
     margin: 1rem 0;
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Pseudo-elements to create a 'frame' effect */
+#battle-arena-container::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.7);
+    pointer-events: none;
 }
 
 #battle-canvas {
     width: 100%;
-    max-width: 800px;
     height: 400px;
-    background: linear-gradient(180deg, #87CEEB 0%, #F4A460 70%, #8B4513 100%);
-    border: 2px solid #654321;
-    border-radius: 5px;
     display: block;
-    margin: 0 auto;
+    background: #8B4513; /* Fallback */
 }
 
-.battle-arena-controls {
+/* Results overlay styled to fit theme */
+#results-content h3.victory {
+    color: var(--c-accent);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    font-size: 2rem;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+#results-content h3.defeat {
+    color: var(--c-danger);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    font-size: 2rem;
     text-align: center;
     margin: 1rem 0;
 }
 
 .battle-arena-controls button {
-    margin: 0 0.5rem;
-    padding: 0.5rem 1rem;
-    background: #8B4513;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.battle-arena-controls button:hover {
-    background: #A0522D;
+    background: var(--c-primary);
+    border: 1px solid var(--c-primary-dark);
 }
 
