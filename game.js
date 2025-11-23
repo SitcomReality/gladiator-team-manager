@@ -72,14 +72,5 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 // Add battle manager helper methods
-BattleManager.prototype.getBattleReward = function(difficulty, type) {
-    const rewards = {
-        'easy': { gold: 100, reputation: 5 },
-        'medium': { gold: 250, reputation: 15 },
-        'hard': { gold: 500, reputation: 30 },
-        'legendary': { gold: 1000, reputation: 60 }
-    };
-    
-    return rewards[difficulty][type];
-};
+// (Removed redundant prototype patch that could run before BattleManager is defined)
 
