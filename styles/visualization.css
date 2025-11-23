@@ -47,3 +47,28 @@
     border: 1px solid var(--c-primary-dark);
 }
 
+/* Make the battle-results area layout friendly to scrolling:
+   - allow its container to be a vertical flexbox so children can size properly
+   - ensure results-content can shrink and scroll when there's overflow */
+#battle-results {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0; /* allow children to shrink inside panels with overflow */
+    overflow: hidden;
+}
+
+#battle-results > #battle-arena-container {
+    /* keep the arena visible but allow it to take only required space */
+    flex: 0 0 auto;
+}
+
+#results-content {
+    /* allow the results text area to take remaining space and scroll when needed */
+    flex: 1 1 auto;
+    min-height: 0; /* critical for flex children to allow scrolling inside overflowed parents */
+    overflow-y: auto;
+    padding: 0.75rem;
+    box-sizing: border-box;
+}
+
