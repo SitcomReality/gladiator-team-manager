@@ -1,0 +1,228 @@
+.panel {
+    background: rgba(255,255,255,0.9);
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border: 2px solid #8B4513;
+    margin-bottom: 1rem;
+}
+
+.panel h2 {
+    color: #8B4513;
+    border-bottom: 2px solid #8B4513;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.panel h3 {
+    color: #A0522D;
+    margin-bottom: 0.75rem;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    margin: 0.25rem;
+    text-transform: uppercase;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.btn.primary {
+    background: linear-gradient(135deg, #D2691E, #FF8C00);
+    color: white;
+}
+
+.btn.secondary {
+    background: linear-gradient(135deg, #696969, #808080);
+    color: white;
+}
+
+.btn.danger {
+    background: linear-gradient(135deg, #DC143C, #FF0000);
+    color: white;
+}
+
+.btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Gladiator cards and stats */
+.gladiator-card {
+    background: linear-gradient(135deg, #F4A460 0%, #DEB887 100%);
+    border: 2px solid #8B4513;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.gladiator-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+.gladiator-card.selected {
+    border-color: #FF8C00;
+    box-shadow: 0 0 20px rgba(255,140,0,0.5);
+}
+
+.gladiator-card.injured {
+    background: linear-gradient(135deg, #CD853F 0%, #A0522D 100%);
+    opacity: 0.7;
+}
+
+.gladiator-card.dead {
+    background: linear-gradient(135deg, #696969 0%, #2F4F4F 100%);
+    opacity: 0.5;
+}
+
+.gladiator-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #2c1810;
+    margin-bottom: 0.5rem;
+}
+
+.gladiator-class {
+    font-style: italic;
+    color: #8B4513;
+    margin-bottom: 0.5rem;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.3);
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.9rem;
+}
+
+.health-bar, .stamina-bar {
+    width: 100%;
+    height: 20px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 0.25rem;
+}
+
+.health-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #32CD32, #228B22);
+    transition: width 0.5s ease;
+}
+
+.stamina-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4169E1, #0000CD);
+    transition: width 0.5s ease;
+}
+
+/* Battle options, logs, injuries, prosthetics */
+.battle-option {
+    background: linear-gradient(135deg, #F5DEB3, #D2B48C);
+    border: 2px solid #8B4513;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.battle-option:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+.battle-difficulty {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.battle-difficulty.easy { color: #32CD32; }
+.battle-difficulty.medium { color: #FF8C00; }
+.battle-difficulty.hard { color: #DC143C; }
+.battle-difficulty.legendary { color: #8A2BE2; }
+
+.battle-rewards {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+}
+
+.injury-list {
+    list-style: none;
+    margin: 0.5rem 0;
+}
+
+.injury-list li {
+    background: rgba(220,20,60,0.1);
+    padding: 0.25rem 0.5rem;
+    margin: 0.25rem 0;
+    border-radius: 3px;
+    border-left: 3px solid #DC143C;
+    font-size: 0.9rem;
+}
+
+.prosthetic-option {
+    background: rgba(255,215,0,0.2);
+    border: 1px solid #DAA520;
+    border-radius: 5px;
+    padding: 0.5rem;
+    margin: 0.25rem 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.prosthetic-option:hover {
+    background: rgba(255,215,0,0.4);
+    transform: translateY(-1px);
+}
+
+.battle-log {
+    background: rgba(0,0,0,0.8);
+    color: #fff;
+    padding: 1rem;
+    border-radius: 5px;
+    max-height: 300px;
+    overflow-y: auto;
+    margin: 1rem 0;
+    font-family: monospace;
+    line-height: 1.4;
+}
+
+.battle-log .victory {
+    color: #32CD32;
+    font-weight: bold;
+}
+
+.battle-log .defeat {
+    color: #DC143C;
+    font-weight: bold;
+}
+
+.battle-log .injury {
+    color: #FF8C00;
+}
