@@ -82,7 +82,11 @@
         }
     }
     </script>
-    <script src="gladiator.js"></script>
+
+    <!-- Load split gladiator modules (global classes are attached to window for backwards compatibility) -->
+    <script src="models/gladiator.js"></script>
+    <script src="managers/gladiator-manager.js"></script>
+
     <script type="module" src="battle/index.js"></script>
     <script src="ui/ui-manager.js"></script>
     <script src="ui/components/gladiator-roster.js"></script>

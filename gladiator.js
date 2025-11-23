@@ -1,3 +1,10 @@
+// Legacy shim kept for compatibility. The gladiator code has been split into:
+//  - models/gladiator.js       (defines window.Gladiator)
+//  - managers/gladiator-manager.js  (defines window.GladiatorManager)
+//
+// Keep this file harmless in case other tooling still references it.
+console.info('gladiator.js: legacy shim active — use models/gladiator.js and managers/gladiator-manager.js');
+
 class Gladiator {
     constructor(name = null) {
         this.id = Math.random().toString(36).substr(2, 9);
